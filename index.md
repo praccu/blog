@@ -7,7 +7,7 @@ date: 2022-12-25
 
 First post!
 
-<img src="images/calm-tech/final-frame.jpg" width="25%" height="25%" />
+<img src="images/calm-todo/final-frame.jpg" width="25%" height="25%" />
 
 ## Materials
 
