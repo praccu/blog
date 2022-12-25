@@ -26,32 +26,43 @@ First post!
 
 ### Software
 
-Home Assistant
-ESPHome
-CloudFlare
-NameCheap
-Todoist (API, Android App)
+* [Home Assistant](https://www.home-assistant.io/)
+* [ESPHome](https://esphome.io/)
+* [CloudFlare Tunnel](https://peyanski.com/connecting-cloudflare-tunnel-to-home-assistant/) 
+* [NameCheap](https://www.namecheap.com/)
+* [Todoist](https://todoist.com/)
 
 ## Physical Setup
 
 ### Electronics
 
-Connect the screen to the driver board (don't get any cables backwards, this wasted 4 hours of my life). Connect the driver board to the cable (even if the cable says it's a data cable, it might not be. This wasted 4 hours of my life.) Connect the cable to a keep-alive board (this delayed me 2 weeks waiting for a part...). Connect the keep-alive board to the power bank.
+* Connect the screen to the driver board (don't get any cables backwards, this wasted 4 hours of my life). 
+* Connect the driver board to the cable (even if the cable says it's a data cable, it might not be. This wasted 4 hours of my life.) 
+* Connect the cable to a keep-alive board (this delayed me 2 weeks waiting for a part...). 
+* Connect the keep-alive board to the power bank.
 
 ### Frame
-I used a TODO: dimensions frame from Michaels. Unfortunately, my power bank was too thick, so I added some extra depth to it. I also added some spacers to hold everything in place, and a bit of cardboard between the display and the rest of the electronics.
+I used a frame from Michaels. Unfortunately, my power bank was too thick, so I added some extra depth to it. 
+
+I also added some spacers to hold everything in place, and a bit of cardboard between the display and the rest of the electronics.
 
 ## Digital Setup
 
-Home Assistant: steps to describe (link to starting documentation).
-Set up ESPHome
-Set up a CloudFlare tunnel
-Set up device on ESPHome, download the binary.
-Set up esphomeflasher, to flash basic setup on the waveshare board.
+* Home Assistant: steps to describe (link to starting documentation).
+* Set up ESPHome
+* Set up a [CloudFlare tunnel](https://peyanski.com/connecting-cloudflare-tunnel-to-home-assistant/) so you can access your HA dashboard from anywhere. (And flash ESPs from anywhere.)
+* Set up device on ESPHome, download the binary.
+* Set up esphomeflasher, to flash basic setup on the waveshare board.
 
 ### Set up Todoist, retrieve your API Token
+Get your Todoist API token [here](https://todoist.com/app/settings/integrations/developer), and put it into your Home Assistant config where I have "REDACTED".
 
 ### Config for Home Assistant
+A few hacks here:
+* We use the command line and CURL with an echo to convert the list Todoist returns to a dictionary (because that's what Home Assistant can handle).
+* We only put the length in the sensor's value, because Home Assistant sensors have a 255 character max
+* We split out 10 sensors explicitly because there's no way to have a dynamically sized number of sensors.
+
 ```
 sensor:
   - platform: command_line
@@ -91,6 +102,13 @@ sensor:
 ```
 
 ### Config for ESPHome
+
+Hacks:
+* the ```reset_duration: 2ms``` is necessary for this type of WaveShare display...
+* the default list of glyphs doesn't contain many that I use in my regular life (e.g., question marks)
+* by setting deep sleep, we save a lot of battery life, but we unfortunately trick the battery into going to sleep too.
+* when updating, I need to unplug the ESP32 from the battery and then plug it in before the upload happens. It typically takes 125 seconds before uploading, so waiting 100 seconds and then plugging it in usually works.
+* the pinout for the ESP32 driver board HAT can be [found on page 2 of the manual](https://www.waveshare.com/w/upload/4/4a/E-Paper_ESP32_Driver_Board_user_manual_en.pdf)
 
 ```
 font:
@@ -173,8 +191,8 @@ deep_sleep:
 ```
 
 ### Add device to Home Assistant
+You may need to [manually add the device to home assistant](https://esphome.io/guides/getting_started_hassio.html#connecting-your-device-to-home-assistant) to read the sensor attributes.
 
-TODO: note about glyphs
+### Open Source contributions
+This blog!
 TODO: add better logging for glyphs, link commit improving error message
-TODO: note about how to upload during deepsleep
-TODO: link to manual and note about how to determine pins
