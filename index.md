@@ -66,7 +66,7 @@ A few hacks here:
 * We only put the length in the sensor's value, because Home Assistant sensors have a 255 character max
 * We split out 10 sensors explicitly because there's no way to have a dynamically sized number of sensors.
 
-```
+````
 sensor:
   - platform: command_line
     name: todo_list
@@ -102,7 +102,7 @@ sensor:
         value_template: "{% if states.sensor.todo_list.state | int > 8 %} {{states.sensor.todo_list.attributes.tasks[8].content }} {% else %} {% endif %}"
       item9: 
         value_template: "{% if states.sensor.todo_list.state | int > 9 %} {{states.sensor.todo_list.attributes.tasks[9].content }} {% else %} {% endif %}"
-```
+````
 
 ### Set up ESPHome
 
@@ -123,7 +123,7 @@ Hacks:
 
 The error message "Encountered character without representation in font" was related to not having set the [glyphs](https://esphome.io/components/display/index.html#fonts) configuration variable for the font. I'll try to get an improvement to this message checked in.
 
-```
+````
 font:
   - file: "gfonts://Mukta"
     id: roboto
@@ -201,7 +201,7 @@ display:
 deep_sleep:
   run_duration: 60s
   sleep_duration: 60min
-```
+````
 
 ### Add device to Home Assistant
 You may need to [manually add the device to home assistant](https://esphome.io/guides/getting_started_hassio.html#connecting-your-device-to-home-assistant) to read the sensor attributes.
