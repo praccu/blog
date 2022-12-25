@@ -123,6 +123,8 @@ Hacks:
 * when updating, I need to unplug the ESP32 from the battery and then plug it in before the upload happens. It typically takes 125 seconds before uploading, so waiting 100 seconds and then plugging it in usually works.
 * the pinout for the ESP32 driver board HAT can be [found on page 2 of the manual](https://www.waveshare.com/w/upload/4/4a/E-Paper_ESP32_Driver_Board_user_manual_en.pdf)
 
+The error message "Encountered character without representation in font" was related to not having set the [glyphs](https://esphome.io/components/display/index.html#fonts) configuration variable for the font. I'll try to get an improvement to this message checked in.
+
 ```
 font:
   - file: "gfonts://Mukta"
