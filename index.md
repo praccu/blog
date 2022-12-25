@@ -66,6 +66,7 @@ A few hacks here:
 * We only put the length in the sensor's value, because Home Assistant sensors have a 255 character max
 * We split out 10 sensors explicitly because there's no way to have a dynamically sized number of sensors.
 
+{% raw %}
 ````
 sensor:
   - platform: command_line
@@ -76,33 +77,34 @@ sensor:
       curl -X GET https://api.todoist.com/rest/v2/tasks -H 'Authorization: Bearer REDACTED'
       ) "}"
     value_template: > 
-      \{\{ value_json.tasks | length \}\}
+      {{ value_json.tasks | length }}
     json_attributes:
       - tasks
     unique_id: 'todoist_tasks'
   - platform: template
     sensors:
       item0: 
-        value_template: {{ "\"{% if states.sensor.todo_list.state | int > 0 %} {{states.sensor.todo_list.attributes.tasks[0].content }} {% else %} {% endif %}\"" }}
+        value_template: "{% if states.sensor.todo_list_2.state | int > 0 %} {{states.sensor.todo_list_2.attributes.tasks[0].content }} {% else %} {% endif %}"
       item1: 
-        value_template: {{ "\"{% if states.sensor.todo_list.state | int > 1 %} {{states.sensor.todo_list.attributes.tasks[1].content }} {% else %} {% endif %}\"" }}
+        value_template: "{% if states.sensor.todo_list_2.state | int > 1 %} {{states.sensor.todo_list_2.attributes.tasks[1].content }} {% else %} {% endif %}"
       item2: 
-        value_template: {{ "\"{% if states.sensor.todo_list.state | int > 2 %} {{states.sensor.todo_list.attributes.tasks[2].content }} {% else %} {% endif %}\"" }}
+        value_template: "{% if states.sensor.todo_list_2.state | int > 2 %} {{states.sensor.todo_list_2.attributes.tasks[2].content }} {% else %} {% endif %}"
       item3: 
-        value_template: {{ "\"{% if states.sensor.todo_list.state | int > 3 %} {{states.sensor.todo_list.attributes.tasks[3].content }} {% else %} {% endif %}\"" }}
+        value_template: "{% if states.sensor.todo_list_2.state | int > 3 %} {{states.sensor.todo_list_2.attributes.tasks[3].content }} {% else %} {% endif %}"
       item4: 
-        value_template: {{ "\"{% if states.sensor.todo_list.state | int > 4 %} {{states.sensor.todo_list.attributes.tasks[4].content }} {% else %} {% endif %}\"" }}
+        value_template: "{% if states.sensor.todo_list_2.state | int > 4 %} {{states.sensor.todo_list_2.attributes.tasks[4].content }} {% else %} {% endif %}"
       item5: 
-        value_template: {{ "\"{% if states.sensor.todo_list.state | int > 5 %} {{states.sensor.todo_list.attributes.tasks[5].content }} {% else %} {% endif %}\"" }}
+        value_template: "{% if states.sensor.todo_list_2.state | int > 5 %} {{states.sensor.todo_list_2.attributes.tasks[5].content }} {% else %} {% endif %}"
       item6: 
-        value_template: {{ "\"{% if states.sensor.todo_list.state | int > 6 %} {{states.sensor.todo_list.attributes.tasks[6].content }} {% else %} {% endif %}\"" }}
+        value_template: "{% if states.sensor.todo_list_2.state | int > 6 %} {{states.sensor.todo_list_2.attributes.tasks[6].content }} {% else %} {% endif %}"
       item7: 
-        value_template: {{ "\""{% if states.sensor.todo_list.state | int > 7 %} {{states.sensor.todo_list.attributes.tasks[7].content }} {% else %} {% endif %}\"" }}
+        value_template: "{% if states.sensor.todo_list_2.state | int > 7 %} {{states.sensor.todo_list_2.attributes.tasks[7].content }} {% else %} {% endif %}"
       item8:
-        value_template: {{ "\"{% if states.sensor.todo_list.state | int > 8 %} {{states.sensor.todo_list.attributes.tasks[8].content }} {% else %} {% endif %}\"" }}
+        value_template: "{% if states.sensor.todo_list_2.state | int > 8 %} {{states.sensor.todo_list_2.attributes.tasks[8].content }} {% else %} {% endif %}"
       item9: 
-        value_template: {{ "\"{% if states.sensor.todo_list.state | int > 9 %} {{states.sensor.todo_list.attributes.tasks[9].content }} {% else %} {% endif %}\"" }}
+        value_template: "{% if states.sensor.todo_list_2.state | int > 9 %} {{states.sensor.todo_list_2.attributes.tasks[9].content }} {% else %} {% endif %}"
 ````
+{% endraw %}
 
 ### Set up ESPHome
 
