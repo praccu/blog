@@ -84,7 +84,7 @@ sensor:
     sensors:
       item0: 
         value_template: "\{% if states.sensor.todo_list.state | int > 0 %\} \{\{states.sensor.todo_list.attributes.tasks[0].content \}\} \{% else %\} \{% endif %\}"
-            item1: 
+      item1: 
         value_template: "\{% if states.sensor.todo_list.state | int > 1 %\} \{\{states.sensor.todo_list.attributes.tasks[1].content \}\} \{% else %\} \{% endif %\}"
       item2: 
         value_template: "\{% if states.sensor.todo_list.state | int > 2 %\} \{\{states.sensor.todo_list.attributes.tasks[2].content \}\} \{% else %\} \{% endif %\}"
