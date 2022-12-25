@@ -3,8 +3,6 @@ title: Building an e-Ink ToDo list
 date: 2022-12-25
 ---
 
-## Building an e-Ink ToDo list
-
 First post!
 
 <img src="images/calm-todo/final_frame.jpg" width="40%" height="40%" />
