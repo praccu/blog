@@ -12,15 +12,17 @@ First post!
 ## Materials
 
 #### Hardware bill of materials:
-TODO: clean this up, make a table with prices
+<img src="images/calm-todo/guts.jpg" width="40%" height="40%" />
 
-WaveShare 7.5 inch screen TODO: link
-Battery
-ESP32 driver board from WaveShare
-Cable (lol...)
-Frame (from Michaels)
-Power Bank Keep-Alive
-HomeAssistant base station (consider [ODroid](https://www.home-assistant.io/installation/odroid))
+<table>
+  <tr><td>Name</td><td>Price</td><td></tr>
+  <tr><td>[WaveShare 7.5 inch screen](https://www.waveshare.com/7.5inch-e-paper-g.htm)</td><td>$69.99</td></tr>
+  <tr><td>[WaveShare ESP32 Driver Board](https://www.waveshare.com/product/e-paper-esp32-driver-board.htm)</td><td>$14.99</td></tr>
+  <tr><td>[WaveShare Driver HAT](https://www.waveshare.com/product/e-paper-driver-hat.htm)</td><td>$9.99</td></tr>
+  <tr><td>[AdaFruit USB Battery Pack - 10000mAh](https://www.adafruit.com/product/1566)</td><td>$39.95</td></tr>
+  <tr><td>[Tindie Power Bank Keep Alive](https://www.tindie.com/products/plop211/power-bank-keep-alive-based-on-555-timer-smd/)</td><td>$13.50</td></tr>
+  <tr><td>HomeAssistant base station (consider [ODroid](https://www.home-assistant.io/installation/odroid))</td><td /></tr>
+</table>
 
 ### Software
 
