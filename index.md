@@ -14,16 +14,15 @@ First post!
 #### Hardware bill of materials:
 <img src="images/calm-todo/guts.jpg" width="40%" height="40%" />
 
-<table>
-  <tr><td>Name</td><td>Price</td><td></tr>
-  <tr><td><a href="https://www.waveshare.com/7.5inch-e-paper-g.htm">WaveShare 7.5 inch screen</a></td><td>$69.99</td></tr>
-  <tr><td><a href="https://www.waveshare.com/product/e-paper-esp32-driver-board.htm">WaveShare ESP32 Driver Board</a></td><td>$14.99</td></tr>
-  <tr><td><a href="https://www.waveshare.com/product/e-paper-driver-hat.htm">WaveShare Driver HAT</a></td><td>$9.99</td></tr>
-  <tr><td><a href="https://www.adafruit.com/product/1566">AdaFruit USB Battery Pack - 10000mAh</a></td><td>$39.95</td></tr>
-  <tr><td><a href="https://www.tindie.com/products/plop211/power-bank-keep-alive-based-on-555-timer-smd/">Tindie Power Bank Keep Alive</a></td><td>$13.50</td></tr>
-  <tr><td>HomeAssistant base station (consider <a href="https://www.home-assistant.io/installation/odroid">ODroid</a>)</td><td /></tr>
-  <tr><td>A frame that can display 6.5" x 3.9"</td><td /></tr>
-</table>
+|Name|Price|
+|----|-----|
+|[WaveShare 7.5 inch screen](https://www.waveshare.com/7.5inch-e-paper-g.htm)|$69.99|
+|[WaveShare ESP32 Driver Board](https://www.waveshare.com/product/e-paper-esp32-driver-board.htm)|$14.99|
+|[WaveShare Driver HAT](https://www.waveshare.com/product/e-paper-driver-hat.htm)|$9.99|
+|[AdaFruit USB Battery Pack - 10000mAh](https://www.adafruit.com/product/1566)|$39.95|
+|[Tindie Power Bank Keep Alive](https://www.tindie.com/products/plop211/power-bank-keep-alive-based-on-555-timer-smd/)|$13.50|
+|HomeAssistant base station (consider [ODroid](https://www.home-assistant.io/installation/odroid))||
+|A frame that can display 6.5" x 3.9"||
 
 ### Software
 
