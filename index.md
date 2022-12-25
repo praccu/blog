@@ -3,7 +3,7 @@ title: Building an e-Ink ToDo list
 date: 2022-12-25
 ---
 
-## eInk ToDo list!
+## Building an e-Ink ToDo list
 
 First post!
 
