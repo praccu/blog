@@ -57,6 +57,11 @@ I also added some spacers to hold everything in place, and a bit of cardboard be
 ### Set up Todoist, retrieve your API Token
 Get your Todoist API token [here](https://todoist.com/app/settings/integrations/developer), and put it into your Home Assistant config where I have "REDACTED".
 
+### Setting up Home Assistant
+I had to [set up Home Assistant](https://www.home-assistant.io/getting-started/) because this was my first project. I quite like it!
+
+I did need to buy a 50' long ethernet cable and attach an old RPi to my monitor for a while to get through the setup.
+
 ### Config for Home Assistant
 A few hacks here:
 * We use the command line and CURL with an echo to convert the list Todoist returns to a dictionary (because that's what Home Assistant can handle).
@@ -100,6 +105,14 @@ sensor:
       item9: 
         value_template: "{% if states.sensor.todo_list.state | int > 9 %} {{states.sensor.todo_list.attributes.tasks[9].content }} {% else %} {% endif %}"
 ```
+
+### Set up ESPHome
+
+The instructions to [setup ESPHome with Home Assistant](https://esphome.io/guides/getting_started_hassio.html) are good.
+
+I unfortunately ran into some trouble, and needed to use [esphomeflasher](https://github.com/esphome/esphome-flasher), and download the bin from ESPHome (Install -> Manual Download -> Legacy Format), the first time, to get things running.
+
+If using ESPHome flasher gets too hard, look for guides to using pip3, and try installing the packages that are missing, and google the error messages.
 
 ### Config for ESPHome
 
