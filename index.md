@@ -5,6 +5,12 @@ date: 2022-12-25
 
 First post!
 
+This is an eInk screen in a picture frame on my wall, that displays my todo list from an app on my phone. I've decided to try to minimize the amount of time I spend looking at LCD and interactive screens, and this is a step on that path.
+
+I learned about a new ecosystem (Home Assistant, ESPHome, ESP32). I'm very impressed at the advances they've made in devex.
+
+I'm also excited that e-Ink is becoming affordable for hobby electronics! Hopefully this is the start of a rapid reduction in price.
+
 <img src="images/calm-todo/final_frame.jpg" width="40%" height="40%" />
 
 ## Materials
@@ -39,6 +45,8 @@ First post!
 * Connect the cable to a keep-alive board (this delayed me 2 weeks waiting for a part...). 
 * Connect the keep-alive board to the power bank.
 
+Pro-tip: if nothing is working, try the WaveShare demo codebase, first, and once you can get the screen working there, _then_ try the full ESPHome + Home Assistant integration.
+
 ### Frame
 I used a frame from Michaels. Unfortunately, my power bank was too thick, so I added some extra depth to it. 
 
@@ -46,11 +54,12 @@ I also added some spacers to hold everything in place, and a bit of cardboard be
 
 ## Digital Setup
 
-* Home Assistant: steps to describe (link to starting documentation).
+* Set up Home Assistant.
 * Set up ESPHome
 * Set up a [CloudFlare tunnel](https://peyanski.com/connecting-cloudflare-tunnel-to-home-assistant/) so you can access your HA dashboard from anywhere. (And flash ESPs from anywhere.)
 * Set up device on ESPHome, download the binary.
 * Set up esphomeflasher, to flash basic setup on the waveshare board.
+* Set up Todoist.
 
 ### Set up Todoist, retrieve your API Token
 Get your Todoist API token [here](https://todoist.com/app/settings/integrations/developer), and put it into your Home Assistant config where I have "REDACTED".
@@ -59,6 +68,8 @@ Get your Todoist API token [here](https://todoist.com/app/settings/integrations/
 I had to [set up Home Assistant](https://www.home-assistant.io/getting-started/) because this was my first project. I quite like it!
 
 I did need to buy a 50' long ethernet cable and attach an old RPi to my monitor for a while to get through the setup.
+
+If you need help, the home assistant forums and discord, and the ESPHome discord, are welcoming, although somewhat curmudgeonly. It's all volunteers, and a lot of people want their help. You'll make people like you if you read the documentation thoroughly before hand, include all your configuration and code snippets, and describe what you've already tried. If you can, try to answer someone else's questions while you're there.
 
 ### Config for Home Assistant
 A few hacks here:
@@ -128,7 +139,7 @@ The error message "Encountered character without representation in font" was rel
 ````
 font:
   - file: "gfonts://Mukta"
-    id: roboto
+    id: font1
     size: 32
     glyphs: "!\"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'>?/&"
 
@@ -189,16 +200,16 @@ display:
     update_interval: 10sec
     lambda: |-
       int x = 36;
-      it.printf(x, 0, id(roboto), "=> %s", id(todo0).state.c_str());
-      it.printf(x, 40, id(roboto), "=> %s", id(todo1).state.c_str());
-      it.printf(x, 80, id(roboto), "=> %s", id(todo2).state.c_str());
-      it.printf(x, 120, id(roboto), "=> %s", id(todo3).state.c_str());
-      it.printf(x, 160, id(roboto), "=> %s", id(todo4).state.c_str());
-      it.printf(x, 200, id(roboto), "=> %s", id(todo5).state.c_str());
-      it.printf(x, 240, id(roboto), "=> %s", id(todo6).state.c_str());
-      it.printf(x, 280, id(roboto), "=> %s", id(todo7).state.c_str());
-      it.printf(x, 320, id(roboto), "=> %s", id(todo8).state.c_str());
-      it.printf(x, 360, id(roboto), "=> %s", id(todo9).state.c_str());
+      it.printf(x, 0, id(font1), "=> %s", id(todo0).state.c_str());
+      it.printf(x, 40, id(font1), "=> %s", id(todo1).state.c_str());
+      it.printf(x, 80, id(font1), "=> %s", id(todo2).state.c_str());
+      it.printf(x, 120, id(font1), "=> %s", id(todo3).state.c_str());
+      it.printf(x, 160, id(font1), "=> %s", id(todo4).state.c_str());
+      it.printf(x, 200, id(font1), "=> %s", id(todo5).state.c_str());
+      it.printf(x, 240, id(font1), "=> %s", id(todo6).state.c_str());
+      it.printf(x, 280, id(font1), "=> %s", id(todo7).state.c_str());
+      it.printf(x, 320, id(font1), "=> %s", id(todo8).state.c_str());
+      it.printf(x, 360, id(font1), "=> %s", id(todo9).state.c_str());
 
 deep_sleep:
   run_duration: 60s
@@ -208,6 +219,11 @@ deep_sleep:
 ### Add device to Home Assistant
 You may need to [manually add the device to home assistant](https://esphome.io/guides/getting_started_hassio.html#connecting-your-device-to-home-assistant) to read the sensor attributes.
 
-### Open Source contributions
-This blog!
-TODO: add better logging for glyphs, link commit improving error message
+### Thoughts on what can be improved about the ecosystem
+It's clear that this ecosystem was built by people who think "no dynamic sizing" is a pillar of good design. You know: hardware folks who want their systems to work every time, to avoid killing people. It also means there are some rough edges at the boundary between software and hardware, e.g., I needed to hard-code 10 sensors and needed to use echo to convert a JSON list into a dictionary.
+
+I'll keep thinking on ways this could have been improved (e.g., supporting lists in their json parsing template language, or allowing sensors to be instantiated using a list comprehension).
+
+Otherwise: ESPHome lacked an interactive debugger. Home Assistant has a nice little interface for evaluating sensors and making sure you've gotten naming right, and provides a nice integration with VSCode. I'll continue to ponder how this could have gone better.
+
+The other thing that bit me was sometimes opaque error messages that were not googleable (either because Discord isn't indexed, or because no one has had that issue.) For one case, I'm working on a PR to improve the error message around missing character representations.
