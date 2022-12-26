@@ -78,6 +78,7 @@ A few hacks here:
 * We use the command line and CURL with an echo to convert the list Todoist returns to a dictionary (because that's what Home Assistant can handle).
 * We only put the length in the sensor's value, because Home Assistant sensors have a 255 character max
 * We split out 10 sensors explicitly because there's no way to have a dynamically sized number of sensors.
+* I'm using "todo\_list\_2" because a previous version of the sensor has taken the name. I tried using SQL Delete commands to get rid of the old sensor, but the sensor stayed with this new name.
 
 {% raw %}
 ````
