@@ -47,6 +47,8 @@ I'm also excited that e-Ink is becoming affordable for hobby electronics! Hopefu
 
 Pro-tip: if nothing is working, try the WaveShare demo codebase, first, and once you can get the screen working there, _then_ try the full ESPHome + Home Assistant integration.
 
+I ran into the following error: ```[E][waveshare_epaper:119]: Timeout while displaying image!```. Turns out I had reattached a ribbon cable upside down.
+
 ### Frame
 I used a frame from Michaels. Unfortunately, my power bank was too thick, so I added some extra depth to it. 
 
